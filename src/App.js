@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Nav from './component/Nav';
+import React from 'react';
+
+function Article(props){
+
+
+  return(
+     <article>
+        <h2>{props.title}</h2>
+          {props.desc}
+      </article>
+  );
+     
+}
+
 
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>WEB</h1>
+      <Nav />
+      <Article title={'Welcome'} desc={"Hello React & Ajax"} />
     </div>
   );
 }

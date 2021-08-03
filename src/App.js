@@ -1,6 +1,7 @@
 
 import Nav from './component/Nav';
-import React from 'react';
+import React, { useState } from 'react';
+import useFetch from './hooks/useFetch';
 
 function Article(props){
 
@@ -16,12 +17,23 @@ function Article(props){
 
 
 function App() {
-  
+  const [title, setTitle]= useState("Welcome");
+  const [desc, setDesc]=useState("Hello React & Ajax")
   return (
     <div className="App">
       <h1>WEB</h1>
-      <Nav />
-      <Article title={'Welcome'} desc={"Hello React & Ajax"} />
+      <Nav onClick={(id)=>{
+        fetch(id+'.json')
+         .then(res =>{
+          return res.json();
+        })
+         .then(data=>{
+          setTitle(data.title);
+          setDesc(data.desc);
+         });
+        
+      }}/>
+      <Article title={title} desc={desc} />
     </div>
   );
 }

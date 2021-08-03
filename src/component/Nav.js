@@ -1,7 +1,7 @@
 import useFetch from '../hooks/useFetch';
 import React from 'react';
 //import React from 'react';
-function Nav(){
+function Nav(props){
     
 const list=useFetch('list.json');
 
@@ -13,12 +13,19 @@ const list=useFetch('list.json');
          });
         },[]); */}
    console.log(list);
-
-   return(
+  return(
       <nav>
         <ul>
            {list.map(lst=>(
-             <li key={lst.id}><a href={lst.id}>{lst.title}</a></li>
+             <li key={lst.id}>
+              <a href={lst.id} data-id={lst.id} onClick = {(e) => {
+                 e.preventDefault();
+                
+                 const id = e.target.dataset.id;
+                 props.onClick(id);
+                
+                 }}> {lst.title}</a>
+             </li>
            ))}
            </ul>   
       </nav> 
